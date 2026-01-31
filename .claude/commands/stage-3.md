@@ -38,7 +38,7 @@
 - 아래 "sc:design 호출 지침"에 따라 `sc:design`을 1회 호출한다
 - 출력물을 PRD 섹션 7(Technical Architecture)에 통합한다
 
-### Step 5: 섹션 8~15 작성
+### Step 5: 섹션 8~16 작성
 - sc:design 출력을 섹션 7에 통합한 **직후**, 아래 섹션을 **연속으로** 작성한다
 - **중단하거나 사용자 확인을 기다리지 않는다**
   - 8\. Screen Map & UI 명세
@@ -49,13 +49,14 @@
   - 13\. Out of Scope
   - 14\. MVP Roadmap
   - 15\. Success Metrics
+  - 16\. Glossary (용어 사전)
 
 ### Step 6: 자체 점검
 - 아래 "작성 완료 후 자체 점검" 항목을 **모두** 대조 확인한다
 - 미충족 항목이 있으면 해당 섹션을 보완한 뒤 완료 처리한다
 
 ## PRD 작성 구조
-아래 15개 섹션으로 PRD를 작성한다. 각 섹션에서 2단계 산출물(시장분석·경쟁분석)의 데이터를 근거로 인용한다.
+아래 16개 섹션으로 PRD를 작성한다. 각 섹션에서 2단계 산출물(시장분석·경쟁분석)의 데이터를 근거로 인용한다.
 
 1. **Executive Summary** — 핵심 가치 제안 한 문단
 2. **Problem Statement** — 2단계 시장분석 기반, 구체적 pain point 기술
@@ -66,10 +67,10 @@
    - 수용 기준은 **검증 가능한 조건문** 형태여야 한다 (예: "감정 태그 1~3개 선택 후 저장 시 1초 이내 응답")
    - 기능 명세 테이블에 입력/출력/제한사항/무료-유료 차이를 포함한다
 6. **Non-functional Requirements** — 성능, 보안, 접근성, 확장성
-7. **Technical Architecture** — `sc:design`을 1회 호출하여 작성. React Native + TypeScript + Supabase 기준으로 아래 **모든 하위 항목**을 포함한다:
+7. **Technical Architecture** — `sc:design`을 1회 호출하여 작성. Expo Managed Workflow + React Native + TypeScript + Supabase 기준으로 아래 **모든 하위 항목**을 포함한다:
    - **7-1. 기술 스택**: 레이어별(프론트엔드, 상태관리, 로컬저장, 백엔드, 결제, 알림, 분석, 빌드) 기술 선택 및 선정 사유
    - **7-2. 시스템 구조도**: 텍스트 기반 아키텍처 다이어그램, 컴포넌트 간 데이터 흐름 표현
-   - **7-3. 오프라인 우선 설계**: 로컬 저장소 선택 및 근거(WatermelonDB, MMKV, AsyncStorage 등), 동기화 큐 로직(재시도 횟수, 백오프 전략), 충돌 해결 정책(Server Wins 등), 저장소별 역할 분담(어떤 데이터를 어디에 저장하는지 명시)
+   - **7-3. 오프라인 우선 설계**: 로컬 저장소 선택 및 근거(고정 스택: MMKV for KV, op-sqlite for DB), 동기화 큐 로직(재시도 횟수, 백오프 전략), 충돌 해결 정책(Server Wins 등), 저장소별 역할 분담(어떤 데이터를 어디에 저장하는지 명시)
    - **7-4. 핵심 설계 원칙**: 아키텍처 결정의 근거 3-5개
    - **7-5. DB 스키마**: 모든 테이블의 **`CREATE TABLE` SQL문**을 작성한다. 컬럼·타입·제약조건·FK·인덱스를 포함한다. RLS 정책을 **테이블별 CRUD 권한 매트릭스**로 정리한다. **핵심 DB Function(RPC)은 시그니처만이 아닌 완전한 SQL 본문을 작성한다.**
    - **7-6. API 설계**: Supabase REST vs Edge Function 선택 기준을 명시한다. 모든 엔드포인트(경로·메서드·설명·구현방식)를 나열한다. **핵심 요청/응답에 대한 TypeScript 인터페이스를 작성한다.** Edge Function은 내부 비즈니스 로직(알고리즘 단계, 검증 로직, 외부 API 호출 흐름)을 서술한다.
@@ -88,9 +89,11 @@
 13. **Out of Scope** — MVP에서 명시적으로 제외하는 기능·영역
 14. **MVP Roadmap** — 3개월 일정, 주별 마일스톤
 15. **Success Metrics** — 핵심 지표(사용자/비즈니스/제품) 정의, 측정 방법 명시
+16. **Glossary (용어 사전)** — 도메인 특화 용어와 정의. `용어 — 정의` 형식으로 작성. 최소 10개 이상
 
 ### 기술 설계 제약
-- React Native + TypeScript + Supabase(PostgreSQL) 전용
+- Expo Managed Workflow + React Native + TypeScript + Supabase(PostgreSQL) 전용
+- 개발 환경: Windows 11 — 개발·디버깅은 Android 에뮬레이터, iOS 빌드는 EAS Build(클라우드), iOS는 배포 전 실기기 최종 검증
 - 1인 개발 규모에 적합한 설계
 - 3개월 MVP 출시 가능한 범위로 한정
 
@@ -130,6 +133,7 @@ PRD가 아래 기술을 필요로 하는 경우, **이 테이블에 있는 기�
 - **sc:design에 아래 제약을 명시적으로 전달한다:**
   - "Section 7-1 기술 선택은 위의 '고정 기술 스택' 테이블을 따를 것"
   - "조건부 기술은 '조건부 의존성' 테이블에 있는 기술 중에서 선택할 것"
+  - "개발 환경은 Windows 11이며, iOS 빌드는 EAS Build(클라우드), 개발·디버깅은 Android 에뮬레이터 기준으로 설계할 것"
 - 출력: 기술 스택, 시스템 구조도, 오프라인 설계, DB 스키마(CREATE TABLE SQL 포함), API 설계(TypeScript 인터페이스 포함), 상태 관리 구조, 기능-테이블-API 매핑표
 - **출력물은 반드시 PRD 문서의 섹션 7 본문에 직접 작성한다. 별도의 Technical Architecture 파일을 생성하지 않는다.**
 

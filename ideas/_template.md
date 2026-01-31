@@ -25,9 +25,10 @@
 |         |        |
 
 ## 기술 구현 검토
-- **React Native + TypeScript**: 구현 가능 여부
+- **Expo + React Native + TypeScript**: 구현 가능 여부
 - **Supabase**: 필요한 기능 커버 여부
 - **외부 서비스 의존도**: (결제, 본인인증, 지도 등)
+- **개발 환경 호환성**: Windows 11 + EAS Build 환경에서 개발·테스트·빌드 가능 여부
 
 ## 평가 점수
 | 항목 | 점수 (1-5) | 비고 |

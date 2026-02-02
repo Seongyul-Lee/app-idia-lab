@@ -9,6 +9,7 @@
 - `ideas/NNN-아이디어명.md` — 평가 완료 아이디어 문서
 - `research/competitors/NNN-경쟁분석.md` — 경쟁사 분석
 - `research/market-data/NNN-시장분석.md` — 시장 분석
+- `research/market-data/NNN-트렌드메모.md` — 트렌드 분석
 - `ideas/NNN-아이디어명-review.md` — (3단계 회귀 시) 4단계 판별 보고서
 - `ideas/NNN-아이디어명-prd.md` — (3단계 회귀 시) 기존 PRD 문서
 

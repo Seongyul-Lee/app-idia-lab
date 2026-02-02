@@ -130,11 +130,13 @@ PRD가 아래 기술을 필요로 하는 경우, **이 테이블에 있는 기�
 
 ### sc:design 호출 지침
 - 호출 시점: 섹션 1~6 작성 완료 후
-- 입력 컨텍스트: Functional Requirements(P0/P1), Non-functional Requirements, **기술 설계 제약 + project-init 고정 기술 스택 + 조건부 의존성 테이블**을 전달
+- **제약 전달 우선순위**: sc:design 호출 시 아래 제약 블록을 **프롬프트 최상단**에 배치하여, 설계 전 과정에서 제약이 누락되지 않도록 한다.
+- 입력 컨텍스트: **기술 설계 제약 + project-init 고정 기술 스택 + 조건부 의존성 테이블 + 사용 금지 목록** → Functional Requirements(P0/P1) → Non-functional Requirements 순서로 전달
 - **sc:design에 아래 제약을 명시적으로 전달한다:**
   - "Section 7-1 기술 선택은 위의 '고정 기술 스택' 테이블을 따를 것"
-  - "조건부 기술은 '조건부 의존성' 테이블에 있는 기술 중에서 선택할 것"
+  - "조건부 기술은 '조건부 의존성' 테이블에 있는 기술 중에서 선택하고, 테이블의 **정확한 기술명**(예: 'Gifted Charts (SVG 기반)', 'Victory Native (Skia 기반)')을 그대로 사용할 것"
   - "개발 환경은 Windows 11이며, iOS 빌드는 EAS Build(클라우드), 개발·디버깅은 Android 에뮬레이터 기준으로 설계할 것"
+  - "**사용 금지**: React Navigation, Tamagui, NativeBase, Jotai, Redux Toolkit, AsyncStorage, WatermelonDB — 이 기술들은 어떤 경우에도 선택하지 않는다"
 - 출력: 기술 스택, 시스템 구조도, 오프라인 설계, DB 스키마(CREATE TABLE SQL 포함), API 설계(TypeScript 인터페이스 포함), 상태 관리 구조, 기능-테이블-API 매핑표
 - **출력물은 반드시 PRD 문서의 섹션 7 본문에 직접 작성한다. 별도의 Technical Architecture 파일을 생성하지 않는다.**
 
@@ -152,6 +154,7 @@ PRD 초안 완성 후, 아래 항목을 **모두** 대조 확인한다. 미충�
 | 7 | 오프라인 저장소·동기화·충돌 해결 정책이 명시되었는가 | 섹션 7-3 |
 | 8 | 네비게이션 구조 트리 + 핵심 화면 UI 설명이 존재하는가 | 섹션 8 |
 | 9 | User Story가 모든 기능 영역(온보딩·인증·핵심·설정·결제)을 커버하는가 | 섹션 4 |
+| 10 | Section 7-1 기술 선택이 고정 스택을 준수하고, 조건부 기술이 허용 목록 내이며, 사용 금지 기술이 포함되지 않았는가 | 섹션 7-1 |
 
 ## 산출물
 | 파일 | 위치 |

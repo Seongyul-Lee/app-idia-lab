@@ -31,6 +31,8 @@ PRD와 2단계 산출물을 모두 읽은 뒤, 아래 4개 영역을 직접 검�
 ### C. 기술 검증
 - Expo + React Native + TypeScript + Supabase로 명세된 기능이 구현 가능한가
 - PRD의 기술 선택이 project-init 고정 기술 스택(Expo Router, Zustand, MMKV, op-sqlite 등)을 준수하는가
+- 조건부 기술(인증·알림·분석·결제·차트·UI·미디어·애니메이션)이 project-init 조건부 의존성 매핑 테이블의 허용 목록 내인가 (목록 외 기술 사용 시 Section 12에 'project-init 조건부 매핑 미지원 — 수동 설치 필요'로 명시되었는가)
+- 사용 금지 기술(React Navigation, Tamagui, NativeBase, Jotai, Redux Toolkit, AsyncStorage, WatermelonDB)이 포함되지 않았는가
 - Windows 11 + EAS Build 환경에서 개발·테스트·빌드가 가능한가 (macOS 필수 도구·iOS 전용 API 과의존 여부)
 - 1인 개발 규모에 과도한 복잡성은 없는가
 - 3개월 MVP 범위가 현실적인가
